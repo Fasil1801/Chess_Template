@@ -12,6 +12,8 @@ public abstract class ChessPiece : MonoBehaviour
         ChessPlayerPlacementHandler Handiler = GetComponent<ChessPlayerPlacementHandler>();
         row = Handiler.row;
         col = Handiler.column;
+
+        ChessSelectionManager.instance.AddToBoard(this, row, col);
     }
     private void OnMouseDown()
     {

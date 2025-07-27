@@ -1,4 +1,5 @@
 
+using UnityEditorInternal;
 using UnityEngine;
 
 public class Pawn : ChessPiece
@@ -20,6 +21,9 @@ public class Pawn : ChessPiece
     {
         if (IsValid(row, col))
         {
+            var piece = ChessSelectionManager.instance.GetPiece(row, col);
+            if (piece != null) return;
+
             ChessBoardPlacementHandler.Instance.Highlight(row, col);
         }
     }

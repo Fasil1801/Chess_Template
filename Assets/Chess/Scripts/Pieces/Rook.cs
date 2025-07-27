@@ -14,6 +14,9 @@ public class Rook : ChessPiece
             int newCol = col + direction[i, 1];
             while (IsValid(newRow, newCol))
             {
+                var piece = ChessSelectionManager.instance.GetPiece(newRow, newCol);
+                if (piece != null) break;
+
                 ChessBoardPlacementHandler.Instance.Highlight(newRow, newCol);
                 newRow += direction[i, 0];
                 newCol += direction[i, 1];

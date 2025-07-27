@@ -14,6 +14,9 @@ public class Knight : ChessPiece
             int newCol = col + direction[i, 1];
             if (IsValid(newRow, newCol))
             {
+                var piece = ChessSelectionManager.instance.GetPiece(newRow, newCol);
+                if (piece != null) continue;
+
                 ChessBoardPlacementHandler.Instance.Highlight(newRow, newCol);
             }
         }

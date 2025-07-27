@@ -13,6 +13,9 @@ public class King : ChessPiece
 
             if (IsValid(newRow, newCol))
             {
+                var piece = ChessSelectionManager.instance.GetPiece(newRow,newCol);
+                if (piece != null) continue;
+
                 ChessBoardPlacementHandler.Instance.Highlight(newRow,newCol);
             }
         }
