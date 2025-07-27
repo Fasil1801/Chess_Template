@@ -14,8 +14,14 @@ public class King : ChessPiece
             if (IsValid(newRow, newCol))
             {
                 var piece = ChessSelectionManager.instance.GetPiece(newRow,newCol);
-                if (piece != null) continue;
-
+                if (piece != null)
+                {
+                    if (!piece.isWhite == this.isWhite)
+                    {
+                        ChessBoardPlacementHandler.Instance.HighlightEnemy(newRow, newCol);
+                    }
+                    continue;
+                }
                 ChessBoardPlacementHandler.Instance.Highlight(newRow,newCol);
             }
         }

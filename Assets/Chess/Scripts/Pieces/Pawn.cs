@@ -13,8 +13,8 @@ public class Pawn : ChessPiece
         {
             HighlightMoves(row + 2 * direction, col);
         }
-        HighlightMoves(row + direction, col+1);
-        HighlightMoves(row + direction, col-1);
+        HighlightEnemy(row + direction, col+1);
+        HighlightEnemy(row + direction, col-1);
     }
 
     private void HighlightMoves(int row, int col)
@@ -25,6 +25,17 @@ public class Pawn : ChessPiece
             if (piece != null) return;
 
             ChessBoardPlacementHandler.Instance.Highlight(row, col);
+        }
+    }
+    private void HighlightEnemy(int row, int col)
+    {
+        if (IsValid(row,col))
+        {
+            var piece = ChessSelectionManager.instance.GetPiece(row, col);
+            if (piece != null && !piece.isWhite == this.isWhite)
+            {
+                ChessBoardPlacementHandler.Instance.HighlightEnemy(row, col);
+            }
         }
     }
 }

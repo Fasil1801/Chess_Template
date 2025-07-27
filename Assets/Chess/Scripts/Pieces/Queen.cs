@@ -16,9 +16,16 @@ public class Queen : ChessPiece
             while (IsValid(newRow, newCol))
             {
                 var piece = ChessSelectionManager.instance.GetPiece(newRow, newCol);
-                if (piece != null) break;
+                if (piece != null)
+                {
+                    if (!piece.isWhite == this.isWhite)
+                    {
+                        ChessBoardPlacementHandler.Instance.HighlightEnemy(newRow, newCol);
+                    }
+                    break;
+                }
 
-                ChessBoardPlacementHandler.Instance.Highlight(newRow, newCol);
+                    ChessBoardPlacementHandler.Instance.Highlight(newRow, newCol);
                 newRow += direction[i, 0];
                 newCol += direction[i, 1];
             }
